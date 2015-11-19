@@ -13,7 +13,7 @@
 #endif
 
 #include "resource.h"		// main symbols
-#include "MessageContainers.h"
+#include "MessageInspector.h"
 
 #define MAINAPP (((CTestWMFApp*)AfxGetApp()))
 
@@ -26,7 +26,7 @@
 #define GraphID 345
 extern CEvent Terminator1;
 extern GraphicThread *Graph;
-extern MessagesInspector Inspector1;	
+extern MessagesInspector GlobalInspector;	
 
 class CTestWMFApp : public CWinApp
 {

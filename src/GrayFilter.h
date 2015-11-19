@@ -1,7 +1,7 @@
 #pragma once
 
 #include "filterbase.h"
-#include "my_timer.h"
+#include "MyTime.h"
 #include "djvupic.h"
 #include "bmpanvas.h"
 

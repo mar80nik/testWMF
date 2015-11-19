@@ -15,7 +15,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 #include "gausianblur.h"
-#include "my_timer.h"
+#include "MyTime.h"
 #include "rotatefilter.h"
 #include ".\testwmfdlg.h"
 #include "Psapi.h"

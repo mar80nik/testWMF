@@ -191,7 +191,7 @@ void OutputWnd::OnMouseMove(UINT nFlags, CPoint point)
 			if(!(ActiveZone=CurPic->GetActiveZone())) break;
 			if(ActiveZone->SizeZone(LM0,CurPoint)) 
 			{
-				DrawMode.Set(FRG);Draw();
+				DrawMode.Set(GraphModes::FRG);Draw();
 			}
 		}		
 		break;
@@ -199,7 +199,7 @@ void OutputWnd::OnMouseMove(UINT nFlags, CPoint point)
 		if(nFlags==(MK_LBUTTON))
 		{
 			ActiveZone=CurPic->GetActiveZone();				
-			if(ActiveZone->MoveZone(LM0,CurPoint)) {DrawMode.Set(FRG);Draw();}
+			if(ActiveZone->MoveZone(LM0,CurPoint)) {DrawMode.Set(GraphModes::FRG);Draw();}
 		}		
 		break;
 	case CROP_MOVE:
@@ -218,7 +218,7 @@ void OutputWnd::OnMouseMove(UINT nFlags, CPoint point)
 				{
 					t+=PicMove; 
 					CurPic->SetViewRgn(t); buffer->Rgn=CurPic->GetViewRgn();
-					DrawMode.Set(BCKG);Draw();							
+					DrawMode.Set(GraphModes::BCKG);Draw();							
 				}
 				PicMove.x=PicMove.y=0;
 			}
@@ -229,7 +229,7 @@ void OutputWnd::OnMouseMove(UINT nFlags, CPoint point)
 		RotateLine.End=CurPoint; 
 		//RotateLine.Erase(buffer,RotateLine.Rgn);
 		//RotateLine.Draw(buffer,1.); 
-		DrawMode.Set(FRG);Draw();
+		DrawMode.Set(GraphModes::FRG);Draw();
 		UpdateNow();					
 		break;
 	default: 
@@ -329,7 +329,7 @@ void OutputWnd::OnRButtonDown(UINT nFlags, CPoint point)
 		CurPic->IsInZone(CurPoint); ActiveZone=CurPic->GetActiveZone();
 		if(ActiveZone) SetMode(ZONE_MENU); 
 		else SetMode(FREE_SPACE_CLICK);
-		DrawMode.Set(FRG); Draw();	
+		DrawMode.Set(GraphModes::FRG); Draw();	
 		break;
 	case (MK_RBUTTON|MK_CONTROL):		
 		break;
@@ -355,7 +355,7 @@ void OutputWnd::OnRButtonDown(UINT nFlags, CPoint point)
 			CurPic->CenterRotate.angle+=t;
 			//CurPic->CenterRotate.Q=RotateFilterParam::HI;
 			CurPic->Rotate(); 
-			DrawMode.Set(BCKG); Draw();
+			DrawMode.Set(GraphModes::BCKG); Draw();
 			int err=0; 
 		}
 		else
@@ -398,7 +398,7 @@ void OutputWnd::LoadPic(DjvuPic* pic)
     
 	SetZoom(zoom,ZMode,CurPicT);
 	CurPic=CurPicT;
-	DrawMode.Set(BCKG);	Draw();		
+	DrawMode.Set(GraphModes::BCKG);	Draw();		
 	parent->Parent->PostThreadMessage(UM_UPDATE,0,0);	
 }
 
@@ -436,7 +436,7 @@ void OutputWnd::OnLButtonUp(UINT nFlags, CPoint point)
 //			CurPic->SetViewRgn(tRgn);				
 //			buffer->Create(CurPic->Buffer,CurPic->GetViewRgn());
 			SetZoom(zoom,Normal,CurPic);
-			DrawMode.Set(BCKG); Draw();				
+			DrawMode.Set(GraphModes::BCKG); Draw();				
 		}		
 		SetMode(IDLE);	break;
 	case ZONE_MOVE:		
@@ -447,7 +447,7 @@ void OutputWnd::OnLButtonUp(UINT nFlags, CPoint point)
 		}		
 		else
 		{
-			DrawMode.Set(FRG); Draw();
+			DrawMode.Set(GraphModes::FRG); Draw();
 		}
 		SetMode(IDLE); break;
 	case DBLCLICK:
@@ -485,7 +485,7 @@ void OutputWnd::OnRButtonUp(UINT nFlags, CPoint point)
 			//CurPic->SetViewRgn(tRgn);				
 			//buffer->Create(CurPic->Buffer,CurPic->GetViewRgn());
 			SetZoom(zoom,FitAll,CurPic);
-			DrawMode.Set(BCKG); Draw(); 
+			DrawMode.Set(GraphModes::BCKG); Draw(); 
 		}			
 	case FREE_SPACE_CLICK:
 		if(nFlags==MK_LBUTTON)
@@ -505,7 +505,8 @@ void OutputWnd::Draw()
 	{
 		GraphicThread *thread=(GraphicThread *)AfxGetThread(); 
 		thread->WAIT_TIME=500;		
-		thread->Stop=None; thread->Main(mode,0); 
+		thread->StopThread(true); 
+		thread->Main(mode,0); 
 		RedrawWindow(0,0,RDW_INVALIDATE | RDW_NOERASE | RDW_NOFRAME | RDW_ALLCHILDREN);			
 	}	
 }
@@ -524,7 +525,7 @@ void OutputWnd::OnLButtonDblClk(UINT nFlags, CPoint point)
 			if((t=CurPic->IsInZone(CurPoint))>=0)
 			{
 				CurPic->DeleteZone(t);
-				DrawMode.Eql(FRG); Draw();       
+				DrawMode.Eql(GraphModes::FRG); Draw();       
 			}
 			else
 			{
@@ -536,7 +537,7 @@ void OutputWnd::OnLButtonDblClk(UINT nFlags, CPoint point)
 				if(t1->Create(tempRect))
 				{
 					CurPic->AddZone(t1);			
-					DrawMode.Eql(FRG); Draw();
+					DrawMode.Eql(GraphModes::FRG); Draw();
 				}
 				else delete t1;
 			}		
@@ -815,7 +816,7 @@ void OutputWnd::OnZoneAttach()
 			{
 				CurPic->AddZone(t);
 				CurPic->DeleteZone(n);
-				DrawMode.Set(FRG); Draw();
+				DrawMode.Set(GraphModes::FRG); Draw();
 			}		
 		}
 		else delete t;
@@ -833,7 +834,7 @@ void OutputWnd::OnZoneDetach()
 		{
 			CurPic->AddZone(t);
 			CurPic->DeleteZone(n);
-			DrawMode.Set(FRG); Draw();
+			DrawMode.Set(GraphModes::FRG); Draw();
 		}	
 	}
 	else delete t;
@@ -916,14 +917,14 @@ void OutputWnd::OnZoomOut()
 {
 	if(!CurPic) return;
 	SetZoom(zoom_max, FitAll, CurPic);
-	DrawMode.Set(BCKG); Draw(); 
+	DrawMode.Set(GraphModes::BCKG); Draw(); 
 }
 
 void OutputWnd::OnZoomIn()
 {
 	if(!CurPic) return;
 	SetZoom(zoom_min, Normal, CurPic);
-	DrawMode.Set(BCKG); Draw();				
+	DrawMode.Set(GraphModes::BCKG); Draw();				
 }
 
 

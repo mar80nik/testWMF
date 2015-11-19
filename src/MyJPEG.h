@@ -9,9 +9,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 #include "bmpanvas.h"
-#include "mygraphlib\\tiffio.h"
-#include "mygraphlib\\ijl.h"
-#include "mygraphlib\png.h"
+#include "tiffio.h"
+#include "ijl.h"
+#include "png.h"
 
 class MyJPEG
 {

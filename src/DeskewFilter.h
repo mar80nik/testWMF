@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 #include "djvupic.h"
-#include "my_timer.h"
+#include "MyTime.h"
 
 class DeskewFilter  
 {

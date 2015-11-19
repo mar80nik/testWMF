@@ -49,23 +49,23 @@ int GraphicThread::ExitInstance()
 }
 
 
-int GraphicThread::Main(WPARAM wParam, LPARAM lParam)
+void GraphicThread::Main(WPARAM wParam, LPARAM lParam)
 {
 	int ret=ERR_OK;
 	int (GraphicThread::* func)(Message*)=0;
 	switch(wParam)
 	{
-	case BCKG:	func=&GraphicThread::MainBCKG; break;
-	case FRG:	func=&GraphicThread::MainFRG; break;
-	case BW:	func=&GraphicThread::MainBW; break;	
-	case BLUR:  func=&GraphicThread::MainBlur; break;	
-	case ROTLINE:  func=&GraphicThread::MainRotLine; break;	
+	case GraphModes::BCKG:	func=&GraphicThread::MainBCKG; break;
+	case GraphModes::FRG:	func=&GraphicThread::MainFRG; break;
+	case GraphModes::BW:	func=&GraphicThread::MainBW; break;	
+	case GraphModes::BLUR:  func=&GraphicThread::MainBlur; break;	
+	case GraphModes::ROTLINE:  func=&GraphicThread::MainRotLine; break;	
 	}
     if(func) 
 	{	
 		ret=(this->*func)((Message*)lParam);
 	}
-    return ret;
+//    return ret;
 }
 //------------------------------------------------
 void GraphicThread::DrawShape(AbstractGraphics *shape,BMPanvas* dest,double zoom)
@@ -89,10 +89,10 @@ int GraphicThread::MainBlur(Message* msg)
 	BMPanvas* dest=OWnd1.buffer; DjvuPic* CurPic=OWnd1.CurPic;	
 	GausianBlur filter1; filter1.SetKernel(CurPic->GBparam.sigma,CurPic->GBparam.KernelSize);
 	
-	for(i=0; i<Shapes.GetSize() && !Stop && !ret; i++) EraseShape(Shapes[i],dest,Eraser[i]);
+	for(i=0; i<Shapes.GetSize() && !Config.GetStop() && !ret; i++) EraseShape(Shapes[i],dest,Eraser[i]);
 	Shapes.RemoveAll(); Eraser.RemoveAll();      
 
-	for(i=0;i<OWnd1.CurPic->Zones.GetSize() && !Stop;i++)
+	for(i=0;i<OWnd1.CurPic->Zones.GetSize() && !Config.GetStop();i++)
 	{
 		BckgZone* Zone=OWnd1.CurPic->Zones[i];	
 		CRect rect=Zone->GetFillRect();
@@ -101,7 +101,7 @@ int GraphicThread::MainBlur(Message* msg)
 		DrawShape(Zone,dest,1.);
 	}
 
-    OWnd1.DrawMode.Rst(BLUR);			
+    OWnd1.DrawMode.Rst(GraphModes::BLUR);			
 	if(msg) delete msg;	
 	
     return ret;
@@ -114,15 +114,15 @@ int GraphicThread::MainFRG(Message* msg)
 	
 	BMPanvas* dest=OWnd1.buffer; 
 	///ERASE////
-	for(i=0; i<Shapes.GetSize() && !Stop && !ret; i++) EraseShape(Shapes[i],dest,Eraser[i]);
+	for(i=0; i<Shapes.GetSize() && !Config.GetStop() && !ret; i++) EraseShape(Shapes[i],dest,Eraser[i]);
 	Shapes.RemoveAll(); Eraser.RemoveAll();        	
     ///DRAW///
-	for(i=0;i<OWnd1.CurPic->Zones.GetSize() && !Stop;i++) DrawShape(OWnd1.CurPic->Zones[i],dest,1.);
+	for(i=0;i<OWnd1.CurPic->Zones.GetSize() && !Config.GetStop();i++) DrawShape(OWnd1.CurPic->Zones[i],dest,1.);
 
 	DrawShape(&OWnd1.RotateLine,dest,1.);
 //	DrawShape(&OWnd1.CurPic->CropZone,dest,1.);
 
-	OWnd1.DrawMode.Rst(FRG);			
+	OWnd1.DrawMode.Rst(GraphModes::FRG);			
 	if(msg) delete msg;	
 	
     return ret;
@@ -135,14 +135,14 @@ int GraphicThread::MainBCKG(Message* msg)
 	BMPanvas* src=OWnd1.CurPic->Buffer;	
 	 
 	src->CopyTo(dest,CPoint(0,0),OWnd1.CurPic->ViewRgn);
-	for(i=Shapes.GetSize()-1; i>=0 && !Stop; i--) {shape=Shapes[i]; if(!shape->ActiveMask) delete shape;}
+	for(i=Shapes.GetSize()-1; i>=0 && !Config.GetStop(); i--) {shape=Shapes[i]; if(!shape->ActiveMask) delete shape;}
 	Shapes.RemoveAll(); Eraser.RemoveAll();
 
-	for(i=0;i<OWnd1.CurPic->Zones.GetSize() && !Stop;i++) DrawShape(OWnd1.CurPic->Zones[i],dest,1.);
+	for(i=0;i<OWnd1.CurPic->Zones.GetSize() && !Config.GetStop();i++) DrawShape(OWnd1.CurPic->Zones[i],dest,1.);
 
 //	DrawShape(&OWnd1.CurPic->CropZone,dest,1.);
 
-	OWnd1.DrawMode.Rst(BCKG);
+	OWnd1.DrawMode.Rst(GraphModes::BCKG);
     if(msg) delete msg;	
 	
     return ret;
@@ -153,7 +153,7 @@ int GraphicThread::MainBW(Message* msg)
 	BW_FloydSteinberg filter2; filter2.threshold=160;	
 	filter2.Main(OWnd1.CurPic->Buffer);	
 	ret=MainBCKG(msg);	
-	OWnd1.DrawMode.Rst(BW);
+	OWnd1.DrawMode.Rst(GraphModes::BW);
     return ret;
 }
 
@@ -178,23 +178,23 @@ void GraphicThread::OnUnLoadPic(WPARAM wParam, LPARAM lParam )
 void GraphicThread::OnOriginal(WPARAM wParam, LPARAM lParam )
 {
 	OWnd1.CurPic->SetBuffer(OWnd1.CurPic->FullName,!wParam);
-	OWnd1.DrawMode.Set(BCKG);	OWnd1.Draw();
+	OWnd1.DrawMode.Set(GraphModes::BCKG);	OWnd1.Draw();
 }
 
 void GraphicThread::OnBlur(WPARAM wParam, LPARAM lParam )
 {
-	OWnd1.DrawMode.Set(BLUR); OWnd1.Draw();		
+	OWnd1.DrawMode.Set(GraphModes::BLUR); OWnd1.Draw();		
 }
 
 void GraphicThread::OnBW(WPARAM wParam, LPARAM lParam )
 {
-	OWnd1.DrawMode.Set(BW); OWnd1.Draw();		
+	OWnd1.DrawMode.Set(GraphModes::BW); OWnd1.Draw();		
 }
 
 void GraphicThread::OnRotate(WPARAM wParam, LPARAM lParam )
 {
 	OWnd1.CurPic->Rotate();
-	OWnd1.DrawMode.Set(BCKG); OWnd1.Draw();		
+	OWnd1.DrawMode.Set(GraphModes::BCKG); OWnd1.Draw();		
 }
 
 void GraphicThread::OnUpdate(WPARAM wParam, LPARAM lParam )

@@ -29,6 +29,7 @@ struct IndicatorsText {CString device, running, paused;};
 
 void GetErrorText(int err_code,CStringArray &strings);
 
+/*
 struct PerfomanceStaff
 {
 	MyTimer Timer1;
@@ -37,7 +38,7 @@ struct PerfomanceStaff
 
 	PerfomanceStaff() {LogEvents=false;pass_num=0;}	
 };
-
+*/
 union FloatInt
 {
 	float flt;

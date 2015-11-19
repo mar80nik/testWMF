@@ -1,6 +1,6 @@
 #pragma once
 #include "afxcmn.h"
-#include "MessageContainers.h"
+#include "MessageInspector.h"
 #include "afxmt.h"
 #include "generic.h"
 #include "resource.h"
@@ -20,9 +20,9 @@ class StatMessage: public AbstractMessage
 public:
 	int FLAGS;
 	int ThreadPID, Done, Status;
-	double Time, TimeLeft;
+	sec Time, TimeLeft;
 
-	StatMessage() {FLAGS=0; Done=0; Status=Error; Time=TimeLeft=-1;};
+	StatMessage() {FLAGS=0; Done=0; Status=Error; Time=TimeLeft=sec(-1);};
 };
 
 class ThreadParams
@@ -35,7 +35,7 @@ public:
     bool StopWaiting;
 	int PID, Status;
 	CString Name;
-	double Time, TimeLeft;
+	sec Time, TimeLeft;
 	CTime StartTime; MyTimer Timer1;
 
 	ThreadParams();

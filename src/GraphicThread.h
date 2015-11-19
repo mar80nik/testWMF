@@ -1,10 +1,16 @@
 #pragma once
-#include "mythread\mythread.h"
+#include "mythread.h"
 #include "outputwnd.h"
 #include "GausianBlur.h"
 
-enum GraphModes {NONE=0, FRG=1, BCKG=1<<1, BW=1<<2, BLUR=1<<3, ROTLINE=1<<4};
+struct GraphModes 
+{
+	enum {NONE=0, FRG=1, BCKG=1<<1, BW=1<<2, BLUR=1<<3, ROTLINE=1<<4};
+};
 
+enum ErrorCodes {ERR_OK=0,ERR_BAD_STAGE=1<<1,ERR_MUTEX_LOCK=1<<2,ERR_MUTEX_UNLOCK=1<<3,
+	ERR_SENSOR=1<<4, ERR_VOLT_VALUES_ARRAY=1<<5, ERR_THRD_ALRD_RUNNING=1<<6,
+	ERR_THREAD_STOP=1<<7,ERR_STAGE_STOP=1<<8, ERR_GRAPHICS=1<<9};
 
 class Message: public CSingleLock
 {
@@ -49,7 +55,7 @@ protected:
 	CArray<AbstractGraphics*,AbstractGraphics*> Shapes;
 	CArray<CRect,CRect> Eraser;
 
-	virtual int Main(WPARAM wParam, LPARAM lParam);
+	virtual void Main(WPARAM wParam, LPARAM lParam);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual ~GraphicThread(void);
 	virtual BOOL InitInstance();

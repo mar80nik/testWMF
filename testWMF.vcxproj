@@ -48,16 +48,16 @@
     <IntDir>$(SolutionDir)temp\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetName>$(ProjectName)_$(Configuration)$(Platform)</TargetName>
-    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);$(SolutionDir)MyGraphLib</LibraryPath>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(SolutionDir);$(SolutionDir)src;$(SolutionDir)MyThread</IncludePath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);$(SolutionDir)\..\my_lib\MyGraphLib\lib</LibraryPath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(SolutionDir);$(SolutionDir)src;$(SolutionDir)MyThread;$(SolutionDir)\..\my_lib\MyGraphLib\header;$(SolutionDir)\..\my_lib\src</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)exe\</OutDir>
     <IntDir>$(SolutionDir)temp\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetName>$(ProjectName)_$(Configuration)$(Platform)</TargetName>
-    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);$(SolutionDir)MyGraphLib</LibraryPath>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(SolutionDir);$(SolutionDir)src;$(SolutionDir)MyThread</IncludePath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);$(SolutionDir)\..\my_lib\MyGraphLib\lib</LibraryPath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(SolutionDir);$(SolutionDir)src;$(SolutionDir)MyThread;$(SolutionDir)\..\my_lib\MyGraphLib\header;$(SolutionDir)\..\my_lib\src</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -158,7 +158,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MyThread\MyThread.cpp" />
+    <ClCompile Include="..\my_lib\src\MyThread.cpp" />
     <ClCompile Include="src\BckgZone.cpp" />
     <ClCompile Include="src\BMPanvas.cpp" />
     <ClCompile Include="src\BWFilter.cpp" />
@@ -168,13 +168,14 @@
     <ClCompile Include="src\GausianBlur.cpp" />
     <ClCompile Include="src\GraphicThread.cpp" />
     <ClCompile Include="src\GrayFilter.cpp" />
-    <ClCompile Include="src\MessageContainers.cpp" />
     <ClCompile Include="src\MyJPEG.cpp" />
     <ClCompile Include="src\MyListBox.cpp" />
     <ClCompile Include="src\MyListCtrl.cpp" />
     <ClCompile Include="src\MyPrintDialog.cpp" />
     <ClCompile Include="src\MyPrintDlg.cpp" />
-    <ClCompile Include="src\my_timer.cpp" />
+    <ClCompile Include="..\my_lib\src\MyTime.cpp" />
+    <ClCompile Include="..\my_lib\src\MessageInspector.cpp" />
+    <ClCompile Include="..\my_lib\src\ProtectedObject.cpp" />
     <ClCompile Include="src\NiblackFilter.cpp" />
     <ClCompile Include="src\OutputWnd.cpp" />
     <ClCompile Include="src\RotateFilter.cpp" />

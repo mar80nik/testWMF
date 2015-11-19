@@ -12,7 +12,7 @@
 #include <gdiplus.h>
 using namespace Gdiplus;
 
-#include "my_timer.h"
+#include "MyTime.h"
 #include "afxmt.h"
 struct BMPINFO
 	{

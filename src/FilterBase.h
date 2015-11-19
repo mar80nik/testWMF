@@ -1,7 +1,7 @@
 #pragma once
 
 #include "djvupic.h"
-#include "my_timer.h"
+#include "MyTime.h"
 class FilterBase
 {
 public:

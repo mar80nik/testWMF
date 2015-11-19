@@ -12,7 +12,10 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 GraphicThread *Graph;
-MessagesInspector Inspector1;
+MessagesInspector GlobalInspector;
+MessagesInspector* MessagesInspectorSubject::GlobalInspector=&::GlobalInspector;
+WindowAddress LogMessage::LogWindow;
+WindowAddress MyThread::ConfigParentWindow;
 
 /////////////////////////////////////////////////////////////////////////////
 // CTestWMFApp
@@ -77,6 +80,9 @@ BOOL CTestWMFApp::InitInstance()
 	CRuntimeClass* prt = RUNTIME_CLASS(GraphicThread);
 	Graph=(GraphicThread*)AfxBeginThread(prt,THREAD_PRIORITY_NORMAL,0,CREATE_SUSPENDED);		
 	Graph->Create(this,789,&Terminator1);	
+
+	LogMessage::LogWindow.pWND = &dlg;
+	MyThread::ConfigParentWindow.pWND = &dlg;
 
 	accel=LoadAccelerators(AfxGetInstanceHandle(),MAKEINTRESOURCE(IDR_ACCELERATOR1));
 
