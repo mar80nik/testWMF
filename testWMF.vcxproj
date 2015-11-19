@@ -44,14 +44,20 @@
     <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>$(SolutionDir)exe\</OutDir>
+    <IntDir>$(SolutionDir)temp\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_$(Configuration)$(Platform)</TargetName>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);$(SolutionDir)MyGraphLib</LibraryPath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(SolutionDir);$(SolutionDir)src;$(SolutionDir)MyThread</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\</OutDir>
-    <IntDir>.\Debug\</IntDir>
+    <OutDir>$(SolutionDir)exe\</OutDir>
+    <IntDir>$(SolutionDir)temp\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_$(Configuration)$(Platform)</TargetName>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);$(SolutionDir)MyGraphLib</LibraryPath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(SolutionDir);$(SolutionDir)src;$(SolutionDir)MyThread</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -63,20 +69,21 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/testWMF.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(IntermediateOutputPath)testWMF.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntermediateOutputPath)</AssemblerListingLocation>
+      <ObjectFileName>$(IntermediateOutputPath)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntermediateOutputPath)</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ijl15.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>testWMF_release.exe</OutputFile>
+      <AdditionalDependencies>ijl15.lib;libtiff.lib;libpng15d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDatabaseFile>./testWMF_release.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -90,38 +97,42 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0419</Culture>
     </ResourceCompile>
+    <BuildLog>
+      <Path>$(IntermediateOutputPath)$(MSBuildProjectName).log</Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>c:\Program Files\ImageMagick-6.7.7\;c:\Program Files\ImageMagick-6.7.7\Magick++\lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Debug/testWMF.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(IntermediateOutputPath)testWMF.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntermediateOutputPath)</AssemblerListingLocation>
+      <ObjectFileName>$(IntermediateOutputPath)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntermediateOutputPath)</ProgramDataBaseFileName>
       <BrowseInformation>true</BrowseInformation>
-      <BrowseInformationFile>.\Debug/</BrowseInformationFile>
+      <BrowseInformationFile>$(IntermediateOutputPath)</BrowseInformationFile>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4100;4239;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ijl15.lib;Psapi.lib;libtiff.lib;libpng15d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./testWMF.exe</OutputFile>
+      <AdditionalDependencies>ijl15.lib;libtiff.lib;libpng15d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>mygraphlib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>testWMF.pdb</ProgramDatabaseFile>
       <GenerateMapFile>false</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -132,92 +143,44 @@
       <HeaderFileName />
     </Midl>
     <PreBuildEvent>
-      <Command>g:\Programming\VisualC2003\unlocker\pdb_delete_testwmf.bat</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0419</Culture>
     </ResourceCompile>
+    <BuildLog>
+      <Path>$(IntermediateOutputPath)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Bscmake>
+      <OutputFile>$(IntermediateOutputPath)$(TargetName).bsc</OutputFile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BckgZone.cpp" />
-    <ClCompile Include="BMPanvas.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="BWFilter.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="DeskewFilter.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="DjvuPic.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="FilterBase.cpp" />
-    <ClCompile Include="GausianBlur.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="GraphicThread.cpp" />
-    <ClCompile Include="GrayFilter.cpp" />
-    <ClCompile Include="MessageContainers.cpp" />
-    <ClCompile Include="my_timer.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="MyJPEG.cpp" />
-    <ClCompile Include="MyListBox.cpp" />
-    <ClCompile Include="MyListCtrl.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="MyPrintDialog.cpp" />
-    <ClCompile Include="MyPrintDlg.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="MyThread\MyThread.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="NiblackFilter.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="OutputWnd.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="RotateFilter.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
+    <ClCompile Include="MyThread\MyThread.cpp" />
+    <ClCompile Include="src\BckgZone.cpp" />
+    <ClCompile Include="src\BMPanvas.cpp" />
+    <ClCompile Include="src\BWFilter.cpp" />
+    <ClCompile Include="src\DeskewFilter.cpp" />
+    <ClCompile Include="src\DjvuPic.cpp" />
+    <ClCompile Include="src\FilterBase.cpp" />
+    <ClCompile Include="src\GausianBlur.cpp" />
+    <ClCompile Include="src\GraphicThread.cpp" />
+    <ClCompile Include="src\GrayFilter.cpp" />
+    <ClCompile Include="src\MessageContainers.cpp" />
+    <ClCompile Include="src\MyJPEG.cpp" />
+    <ClCompile Include="src\MyListBox.cpp" />
+    <ClCompile Include="src\MyListCtrl.cpp" />
+    <ClCompile Include="src\MyPrintDialog.cpp" />
+    <ClCompile Include="src\MyPrintDlg.cpp" />
+    <ClCompile Include="src\my_timer.cpp" />
+    <ClCompile Include="src\NiblackFilter.cpp" />
+    <ClCompile Include="src\OutputWnd.cpp" />
+    <ClCompile Include="src\RotateFilter.cpp" />
+    <ClCompile Include="src\testWMF.cpp" />
+    <ClCompile Include="src\testWMFDlg.cpp" />
+    <ClCompile Include="src\ThreadsList.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -226,69 +189,15 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="testWMF.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="testWMFDlg.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-    </ClCompile>
-    <ClCompile Include="ThreadsList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="testWMF.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BckgZone.h" />
-    <ClInclude Include="BMPanvas.h" />
-    <ClInclude Include="BWFilter.h" />
-    <ClInclude Include="DeskewFilter.h" />
-    <ClInclude Include="DjvuPic.h" />
-    <ClInclude Include="FilterBase.h" />
-    <ClInclude Include="GausianBlur.h" />
-    <ClInclude Include="generic.h" />
-    <ClInclude Include="GlobalHeader.h" />
-    <ClInclude Include="GraphicThread.h" />
-    <ClInclude Include="GrayFilter.h" />
-    <ClInclude Include="MyGraphLib\ijl.h" />
-    <ClInclude Include="MessageContainers.h" />
-    <ClInclude Include="my_timer.h" />
-    <ClInclude Include="MyJPEG.h" />
-    <ClInclude Include="MyListBox.h" />
-    <ClInclude Include="MyListCtrl.h" />
-    <ClInclude Include="MyPrintDialog.h" />
-    <ClInclude Include="MyPrintDlg.h" />
-    <ClInclude Include="MyThread.h" />
-    <ClInclude Include="MyThread\MyThread.h" />
-    <ClInclude Include="NiblackFilter.h" />
-    <ClInclude Include="OutputWnd.h" />
-    <ClInclude Include="MyGraphLib\png.h" />
-    <ClInclude Include="MyGraphLib\pngstruct.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="RotateFilter.h" />
-    <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="testWMF.h" />
-    <ClInclude Include="testWMFDlg.h" />
-    <ClInclude Include="ThreadsList.h" />
-    <ClInclude Include="MyGraphLib\tiff.h" />
-    <ClInclude Include="MyGraphLib\tiffconf.h" />
-    <ClInclude Include="MyGraphLib\tiffio.h" />
-    <ClInclude Include="MyGraphLib\tiffvers.h" />
-    <ClInclude Include="MyGraphLib\zlib.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\testWMF.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\testWMF.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

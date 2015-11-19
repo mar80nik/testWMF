@@ -50,7 +50,7 @@ public:
 		left=(int)(left/z);	right=(int)(right/z);	
 		top=(int)(top/z);	bottom=(int)(bottom/z);			
 	}
-	operator *=(double z)
+	void operator *=(double z)
 	{
 		left=(int)(left*z);	right=(int)(right*z);	
 		top=(int)(top*z);	bottom=(int)(bottom*z);	
@@ -88,7 +88,7 @@ public:
 	{
 		MyPoint t; t.x=x-z.x;	t.y=y-z.y; return t;
 	}	
-	operator *=(double z)
+	void operator *=(double z)
 	{
 		x=(int)(x*z);	y=(int)(y*z);			
 	}

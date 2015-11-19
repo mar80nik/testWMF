@@ -155,7 +155,8 @@ BMPINFO MyPNG::ReadHeader( const CString& name)
 	BMPINFO temp; temp.bmiHeader.biWidth=temp.bmiHeader.biHeight=0;
 	unsigned char sig[8];
 
-	FILE *infile=fopen(name,"rb");
+	FILE *infile;
+	fopen_s(&infile, name,"rb");
 
 	png_structp png_ptr = NULL;
 	png_infop info_ptr = NULL;

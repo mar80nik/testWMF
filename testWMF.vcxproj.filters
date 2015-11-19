@@ -15,193 +15,78 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BckgZone.cpp">
+    <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BMPanvas.cpp">
+    <ClCompile Include="src\BckgZone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BWFilter.cpp">
+    <ClCompile Include="src\BMPanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DeskewFilter.cpp">
+    <ClCompile Include="src\BWFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DjvuPic.cpp">
+    <ClCompile Include="src\DeskewFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FilterBase.cpp">
+    <ClCompile Include="src\DjvuPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GausianBlur.cpp">
+    <ClCompile Include="src\FilterBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicThread.cpp">
+    <ClCompile Include="src\GausianBlur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GrayFilter.cpp">
+    <ClCompile Include="src\GraphicThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MessageContainers.cpp">
+    <ClCompile Include="src\GrayFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="my_timer.cpp">
+    <ClCompile Include="src\MessageContainers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyJPEG.cpp">
+    <ClCompile Include="src\my_timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyListBox.cpp">
+    <ClCompile Include="src\MyJPEG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyListCtrl.cpp">
+    <ClCompile Include="src\MyListBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyPrintDialog.cpp">
+    <ClCompile Include="src\MyListCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyPrintDlg.cpp">
+    <ClCompile Include="src\MyPrintDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MyPrintDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NiblackFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OutputWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RotateFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\testWMF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\testWMFDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThreadsList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyThread\MyThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NiblackFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OutputWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RotateFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="testWMF.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="testWMFDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadsList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="testWMF.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BckgZone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BMPanvas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BWFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DeskewFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DjvuPic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GausianBlur.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="generic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GrayFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\ijl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageContainers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="my_timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyJPEG.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyListBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyListCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyPrintDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyPrintDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyThread\MyThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NiblackFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutputWnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\png.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\pngstruct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RotateFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testWMF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testWMFDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadsList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\tiff.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\tiffconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\tiffio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\tiffvers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyGraphLib\zlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\testWMF.ico">
@@ -214,6 +99,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ResourceCompile Include="testWMF.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
