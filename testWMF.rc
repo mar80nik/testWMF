@@ -1,0 +1,298 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\testWMF.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\testWMF.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS 
+BEGIN
+    ".",            ID_NEXT123,             ASCII,  ALT, NOINVERT
+    "O",            ID_ORIGINAL,            VIRTKEY, NOINVERT
+    ",",            ID_PREV123,             ASCII,  ALT, NOINVERT
+    "^P",           ID_PRINT,               ASCII,  NOINVERT
+    "^A",           ID_SELECT_ALL,          ASCII,  NOINVERT
+    "V",            ID_ZOOM_IN,             VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_ZOOM_OUT,            VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "PopUpMenu"
+    BEGIN
+        MENUITEM "Attach...",                   ID_POPUPMENU_ATTACH
+        MENUITEM "Detach...",                   ID_POPUPMENU_DETACH
+    END
+END
+
+IDR_MENU2 MENU 
+BEGIN
+    POPUP "PopUpMenu"
+    BEGIN
+        MENUITEM "Clear CropZone",              ID_CLEARCROPZONE
+        MENUITEM "Get CropZone",                ID_GETCROPZONE
+        MENUITEM "Get CropZone MaxW",           ID_GETCROPMAXW
+        MENUITEM "Get CropZone MaxH",           ID_GETCROPMAXH
+        MENUITEM "Get Crop MAX W/H",            ID_GETCROPMAXWH
+        MENUITEM "Save Names List",             ID_SAVENAMESLIST
+    END
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About testWMF"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "testWMF Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_TESTWMF_DIALOG DIALOGEX 0, 0, 856, 606
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE | 
+    WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "testWMF"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT2,631,421,164,14,ES_AUTOHSCROLL | ES_OEMCONVERT | 
+                    WS_GROUP
+    PUSHBUTTON      "Open",IDC_BUTTON2,799,420,50,14
+    PUSHBUTTON      "Print",IDC_BUTTON1,799,282,50,14
+    PUSHBUTTON      "Clear",IDC_BUTTON3,799,298,50,14
+    PUSHBUTTON      "Blur",IDC_BUTTON5,786,49,50,14
+    GROUPBOX        "Gauss blur",IDC_STATIC2,779,7,70,80,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_EDIT4,788,15,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,788,31,40,14,ES_AUTOHSCROLL
+    LTEXT           "sigma",IDC_STATIC,830,17,19,8
+    LTEXT           "N",IDC_STATIC,834,33,8,8
+    EDITTEXT        IDC_EDIT6,691,89,40,14,ES_AUTOHSCROLL
+    LTEXT           "Bckg",IDC_STATIC,665,92,18,8
+    PUSHBUTTON      "Rotate",IDC_BUTTON6,724,49,51,14
+    EDITTEXT        IDC_EDIT8,672,49,48,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Save list",IDC_BUTTON8,689,298,50,14
+    PUSHBUTTON      "Restore list",IDC_BUTTON9,689,282,50,14
+    PUSHBUTTON      "Deskew",IDC_BUTTON10,724,33,51,14
+    CONTROL         "Edges",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    678,68,36,10
+    EDITTEXT        IDC_EDIT1,672,33,48,14,ES_AUTOHSCROLL
+    LISTBOX         IDC_LIST2,600,318,249,92,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    CONTROL         "List3",IDC_LIST3,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,518,441,331,
+                    159
+    GROUPBOX        "Rotate",IDC_STATIC1,669,9,106,76,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_EDIT10,571,298,114,14,ES_AUTOHSCROLL
+    LTEXT           "DJVU output folder",IDC_STATIC,571,285,61,8
+    PUSHBUTTON      "SaveZones",IDC_BUTTON14,746,298,50,14
+    CONTROL         "Original",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,810,92,39,10
+    LTEXT           "Edge level",IDC_STATIC,680,17,34,8
+    PUSHBUTTON      "Set",IDC_BUTTON15,786,65,50,14
+    PUSHBUTTON      "Set",IDC_BUTTON4,723,65,52,14
+    PUSHBUTTON      "Rename/Stop",IDC_BUTTON16,745,282,50,14
+    LTEXT           "Input Folder",IDC_STATIC,588,424,38,8
+    CONTROL         "",IDC_LIST4,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,518,108,331,166
+    PUSHBUTTON      "Button7",IDC_BUTTON7,529,364,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "FileDescription", "testWMF MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "testWMF"
+            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "OriginalFilename", "testWMF.EXE"
+            VALUE "ProductName", "testWMF Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_TESTWMF_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 849
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 600
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About testWMF..."
+    IDS_OWND1               "IDS_OWND1"
+    IDS_OWND2               "IDS_OWND2"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\testWMF.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
