@@ -31,3 +31,4 @@ test/
 exe/
 temp/
 *.bsc
+*.dat

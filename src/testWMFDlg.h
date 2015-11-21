@@ -122,6 +122,7 @@ public:
 	CString InputFldr;
 	afx_msg void OnLvnColumnclickList3(NMHDR *pNMHDR, LRESULT *pResult);	
 	afx_msg  LRESULT OnThreadListUpdate(WPARAM wParam, LPARAM lParam );
+	afx_msg  LRESULT OnGenericMessage(WPARAM wParam, LPARAM lParam );
 	ThreadsList ThreadsList;
 	afx_msg void OnBnClickedButton7();
 };

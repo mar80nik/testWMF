@@ -88,12 +88,12 @@ CTestWMFDlg::CTestWMFDlg(CWnd* pParent /*=NULL*/)
 //	kk = 0.2;
 	canvasW = 1263;
 	canvasH = 1977;
-	DJVUOutFldr="g:\\!tmp\\";	
+	DJVUOutFldr="d:\\!tmp\\";	
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	SaveListFile="";
-	InputFldr=CString(""); ThreadsPID=1;
+	InputFldr="d:\\REPO2\\ttt\\333\\"; ThreadsPID=1;
 }
 
 void CTestWMFDlg::DoDataExchange(CDataExchange* pDX)
@@ -160,6 +160,7 @@ BEGIN_MESSAGE_MAP(CTestWMFDlg, CDialog)
 	ON_MESSAGE(UM_UPDATE,OnUpdate)	
 	ON_MESSAGE(UM_PRINTERLOCK,OnPrinterLock)	
 	ON_MESSAGE(UM_UPDATE_THREAD_LIST,OnThreadListUpdate)	
+	ON_MESSAGE(UM_GENERIC_MESSAGE, OnGenericMessage)
 	
 	ON_BN_CLICKED(IDC_BUTTON16, OnBnClickedButton16)
 	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST3, OnLvnColumnclickList3)
@@ -172,6 +173,14 @@ END_MESSAGE_MAP()
 BOOL CTestWMFDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();	
+
+	LogMessage::LogWindow.pWND = this;
+	MyThread::ConfigParentWindow.pWND = this;
+
+	CRuntimeClass* prt = RUNTIME_CLASS(GraphicThread);
+	Graph=(GraphicThread*)AfxBeginThread(prt,THREAD_PRIORITY_NORMAL,0,CREATE_SUSPENDED);		
+	Graph->Create(AfxGetApp(),789,&Terminator1);	
+
 	Graph->ParentHWND=GetSafeHwnd();
 	
 	// Add "About..." menu item to system menu.
@@ -318,7 +327,7 @@ void CTestWMFDlg::OnOpen()
 	}
 	else
 	{
-		CString T,SearchPattern=InputFldr+"\\*.jpg"; HANDLE SearchHandle; int n=0;
+		CString T,SearchPattern=InputFldr+"\\*.bmp"; HANDLE SearchHandle; int n=0;
 		WIN32_FIND_DATA FindFileData; DjvuPic *temp;
 
 		if( (SearchHandle=FindFirstFile(LPCSTR(SearchPattern),&FindFileData) )!=INVALID_HANDLE_VALUE)
@@ -676,10 +685,10 @@ void CTestWMFDlg::OnBnClickedButton14()
 				Filter3.SetKernel(CurPic->GBparam.sigma,CurPic->GBparam.KernelSize);
 				Filter3.Main(Zone->buffer);		
 				//Img.Attach(HBITMAP(Zone->buffer->bmp));			
-				Img.Attach(Zone->buffer->GetHBMP());			
+				Img.Attach(Zone->buffer->GetHBMP(BMP_DETACH));			
 				T.Format("%s\\%s_%d%s",CurPic->Path,CurPic->Name,i,CurPic->Ext);
 				reslt=Img.Save(T,ImageFormatBMP);
-				Img.Detach();
+				Zone->buffer->Attach(Img.Detach());
 				T.Format("Saving %s_%d%s - ",CurPic->Name,i,CurPic->Ext);
 				if(reslt==S_OK) T+="Ok";
 				else T+="Err";
@@ -835,6 +844,14 @@ LRESULT CTestWMFDlg::OnThreadListUpdate(WPARAM wParam, LPARAM lParam )
 		if(msg->FLAGS & STATUS_MSK) {Thrd->Status=msg->Status; t++;}
 
 */
+
+LRESULT CTestWMFDlg::OnGenericMessage(WPARAM wParam, LPARAM lParam )
+{
+	MessagesInspectorSubject* msg;
+	msg = (MessagesInspectorSubject*)wParam; delete msg;
+	msg = (MessagesInspectorSubject*)lParam; delete msg;
+	return 0;
+}
 
 
 void CTestWMFDlg::OnBnClickedButton7()

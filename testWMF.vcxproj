@@ -100,6 +100,9 @@
     <BuildLog>
       <Path>$(IntermediateOutputPath)$(MSBuildProjectName).log</Path>
     </BuildLog>
+    <PreBuildEvent>
+      <Command>perl $(SourceDir)Makefile.pl</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,8 +146,7 @@
       <HeaderFileName />
     </Midl>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>perl $(SourceDir)Makefile.pl</Command>
     </PreBuildEvent>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -160,7 +162,7 @@
   <ItemGroup>
     <ClCompile Include="..\my_lib\src\MyThread.cpp" />
     <ClCompile Include="src\BckgZone.cpp" />
-    <ClCompile Include="src\BMPanvas.cpp" />
+    <ClCompile Include="..\my_lib\src\BMPanvas.cpp" />
     <ClCompile Include="src\BWFilter.cpp" />
     <ClCompile Include="src\DeskewFilter.cpp" />
     <ClCompile Include="src\DjvuPic.cpp" />

@@ -79,9 +79,9 @@ int RotateFilter::Main(BMPanvas *src)
 	
 	if(!(angle)) return 1;
 	
-	BMPanvas &Buffer=*(src),tempBuffer(&Buffer);
+	BMPanvas &Buffer=*(src),tempBuffer;
 	TempInfo=Buffer.INFO; TempInfo.bmiHeader.biBitCount=8;	
-	tempBuffer.Create(&TempInfo); 
+	tempBuffer.Create(Buffer.GetDC(), &TempInfo); 
 	tempBuffer.CreateGrayPallete();
 	//tempBuffer.PatBlt(0, 0, tempBuffer.w,tempBuffer.h, WHITENESS);
 	PatBlt(tempBuffer.GetDC(),0, 0, tempBuffer.w,tempBuffer.h, WHITENESS);

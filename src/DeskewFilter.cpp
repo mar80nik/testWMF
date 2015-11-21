@@ -51,9 +51,9 @@ struct pXY {unsigned short x,y;};
 double DeskewFilter::Main(BMPanvas *src)
 {
 	double t11,t12; t11=t12=0;
-	BMPINFO TempInfo; BMPanvas &Buffer=*src,tempBuffer(&Buffer);
+	BMPINFO TempInfo; BMPanvas &Buffer=*src,tempBuffer;
 	TempInfo=Buffer.INFO; TempInfo.bmiHeader.biBitCount=8;	
-	tempBuffer.Create(&TempInfo); 
+	tempBuffer.Create(Buffer.GetDC(), &TempInfo); 
 	tempBuffer.CreateGrayPallete();
 	tempBuffer.LoadBitmapArray(); //Buffer.LoadBitmapArray(); 
 

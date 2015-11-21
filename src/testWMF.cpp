@@ -1,15 +1,6 @@
-// testWMF.cpp : Defines the class behaviors for the application.
-//
-
 #include "stdafx.h"
 #include "testWMF.h"
 #include "testWMFDlg.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
 
 GraphicThread *Graph;
 MessagesInspector GlobalInspector;
@@ -28,6 +19,7 @@ BEGIN_MESSAGE_MAP(CTestWMFApp, CWinApp)
 	//}}AFX_MSG
 	ON_COMMAND(ID_HELP, CWinApp::OnHelp)
 	ON_THREAD_MESSAGE(UM_UPDATE,OnUpdate)
+	ON_THREAD_MESSAGE(UM_GENERIC_MESSAGE,OnGenericMessage)
 	ON_THREAD_MESSAGE(UM_NEXT_PIC,OnNextPic)
 	ON_THREAD_MESSAGE(UM_PREV_PIC,OnPrevPic)
 	ON_THREAD_MESSAGE(UM_ON_INIT,OnInit)
@@ -77,12 +69,9 @@ BOOL CTestWMFApp::InitInstance()
 	CTestWMFDlg dlg;
 	m_pMainWnd = &dlg;
 
-	CRuntimeClass* prt = RUNTIME_CLASS(GraphicThread);
-	Graph=(GraphicThread*)AfxBeginThread(prt,THREAD_PRIORITY_NORMAL,0,CREATE_SUSPENDED);		
-	Graph->Create(this,789,&Terminator1);	
 
-	LogMessage::LogWindow.pWND = &dlg;
-	MyThread::ConfigParentWindow.pWND = &dlg;
+	LogMessage::LogWindow.pThrd = AfxGetThread();
+	MyThread::ConfigParentWindow.pThrd = AfxGetThread();
 
 	accel=LoadAccelerators(AfxGetInstanceHandle(),MAKEINTRESOURCE(IDR_ACCELERATOR1));
 
@@ -200,4 +189,9 @@ void CTestWMFApp::OnThreadListUpdate(WPARAM wParam, LPARAM lParam )
 {
 	CTestWMFDlg *dlg1=(CTestWMFDlg *)m_pMainWnd;
 	dlg1->PostMessage(UM_UPDATE_THREAD_LIST,wParam,lParam);
+}
+
+void CTestWMFApp::OnGenericMessage( WPARAM wParam, LPARAM lParam )
+{
+	m_pMainWnd->PostMessage(UM_GENERIC_MESSAGE, wParam, lParam);
 }

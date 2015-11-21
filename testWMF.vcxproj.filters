@@ -9,15 +9,15 @@
       <UniqueIdentifier>{e202219e-5232-4d1c-b031-b0dc9ece1217}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
+    <Filter Include="my_lib">
+      <UniqueIdentifier>{e7bdbce8-6da7-4180-bef1-8009474b1cc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\BckgZone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BMPanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\BWFilter.cpp">
@@ -74,11 +74,20 @@
     <ClCompile Include="src\ThreadsList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_timer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\my_lib\src\MyTime.cpp">
+      <Filter>my_lib</Filter>
     </ClCompile>
     <ClCompile Include="..\my_lib\src\MyThread.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>my_lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my_lib\src\BMPanvas.cpp">
+      <Filter>my_lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my_lib\src\ProtectedObject.cpp">
+      <Filter>my_lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my_lib\src\MessageInspector.cpp">
+      <Filter>my_lib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

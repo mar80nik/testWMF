@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 MyJPEG::MyJPEG(CString& n)
 {
     Name=n; buffer=0;
-	buffer=new BMPanvas((CDC*)0);
+	buffer=new BMPanvas();
 }
 
 MyJPEG::~MyJPEG()
@@ -60,7 +60,7 @@ int MyJPEG::ReadImage()
 	temp.bmiHeader.biWidth=jcprops.JPGWidth;
 	temp.bmiHeader.biHeight=jcprops.JPGHeight;
 	temp.bmiHeader.biBitCount=jcprops.JPGChannels*8;
-	buffer->Create(&temp);
+	buffer->Create(NULL, &temp);
 	buffer->CreateGrayPallete();
 	buffer->LoadBitmapArray();
 

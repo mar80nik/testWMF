@@ -12,7 +12,7 @@ BckgZone::BckgZone(DjvuPic* parent)
 	active_color=RGB(50,50,50); inactive_color=RGB(200,200,200);	
 	ZoneType=NormalZone;
 
-	buffer=new BMPanvas(parent->Buffer);
+	buffer=new BMPanvas();
 }
 
 int BckgZone::Create(CRect rect)
@@ -151,6 +151,20 @@ AttachedBckgZone::AttachedBckgZone(CString name, DjvuPic* parent):
 	Name=name;
 	ZoneType=AttachedZone;		
 }
+
+BITMAPINFOHEADER GetBMPInfo(CString name)
+{
+	BITMAPFILEHEADER header;
+	BITMAPINFOHEADER info;
+	CFile f;
+	if(f.Open(name,CFile::modeRead))
+	{
+		f.Read(&header,sizeof(header));
+		f.Read(&info,sizeof(info));
+		f.Close();
+	}
+	return info;
+};
 
 int AttachedBckgZone::Create(CRect rgn)
 {

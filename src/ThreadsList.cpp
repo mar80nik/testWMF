@@ -40,7 +40,6 @@ CString ThreadParams::GetStatusText()
 
 void ThreadParams::PostParentMessage(UINT Msg, StatMessage* msg)
 {
-	Inspector1.RegisterMsg(msg);
 	msg->ThreadPID=PID; 
 	Parent->PostThreadMessage(Msg,(WPARAM)msg,0);	
 }
@@ -169,7 +168,9 @@ void PrintThreadParams::Main()
 			CRect t5=Zones[i]->Rgn;
 			PatBlt(CurPic.Foreground->GetDC(),t5.left,t5.top,t5.Width(),t5.Height(),WHITENESS);
 		}
-		Img.Attach(CurPic.Foreground->GetHBMP()); Img.Save(TmpName,ImageFormatPNG); Img.Detach();
+		Img.Attach(CurPic.Foreground->GetHBMP(BMP_DETACH)); 
+		Img.Save(TmpName,ImageFormatPNG); 
+		CurPic.Foreground->Attach(Img.Detach());
 // converting
 		T.Format("i_view32 %s /convert=%s",TmpName,TmpFRG);
 		STARTUPINFO si;  GetStartupInfo(&si); PROCESS_INFORMATION pi1;	
@@ -197,8 +198,9 @@ void PrintThreadParams::Main()
 			CRect t5=Zones[i]->Rgn; 
 			BitBlt(CurPic.Background->GetDC(),t5.left,t5.top,t5.Width(),t5.Height(),Zones[i]->buffer->GetDC(),0,0,SRCCOPY);	
 		}
-		Img.Attach(CurPic.Background->GetHBMP()); 
-		Img.Save(TmpName,ImageFormatPNG); Img.Detach();
+		Img.Attach(CurPic.Background->GetHBMP(BMP_DETACH)); 
+		Img.Save(TmpName,ImageFormatPNG); 
+		CurPic.Background->Attach(Img.Detach());
 // converting
 		T.Format("i_view32 %s /convert=%s",TmpName,TmpPPM);
 		if(CreateProcess(NULL, (char *)LPCSTR(T), NULL, NULL, FALSE, DETACHED_PROCESS | CREATE_SUSPENDED | NORMAL_PRIORITY_CLASS, NULL, NULL, &si, &pi1)) 

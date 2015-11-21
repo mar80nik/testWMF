@@ -31,9 +31,9 @@ DjvuPic::DjvuPic(CString name,OutputWnd *parent)//: PicLock(true,false)
 	ProcessFullName();
 	GetPicDim();
 
-	Buffer=new BMPanvas(Parent->GetDC());	
-	Foreground=new BMPanvas(Parent->GetDC());	
-	Background=new BMPanvas(Parent->GetDC());	
+	Buffer=new BMPanvas();	
+	Foreground=new BMPanvas();	
+	Background=new BMPanvas();	
 
 	Param.dd=CPoint(2,2); 
 }
@@ -319,8 +319,9 @@ int DjvuPic::SetBuffer(CString& fullName,bool check)
 {	
 	int err=ERR_OK;
 
-	BMPINFO temp=Foreground->INFO; temp.bmiHeader.biBitCount=8; 
-	Buffer->Destroy(); Buffer->Create(&temp); Buffer->CreateGrayPallete();			
+	Buffer->Destroy(); 
+	Buffer->Create(Parent, Foreground->INFO.bmiHeader.biWidth, Foreground->INFO.bmiHeader.biHeight, 8); 
+	Buffer->CreateGrayPallete();			
 	CImage TT; TT.Load(FrgFile); TT.BitBlt(Buffer->GetDC(),0,0);
 	return err;
 }
@@ -337,9 +338,10 @@ int DjvuPic::SetBackground()
 	if(IsBckgFile) Background->LoadImage(BckgFile); 	
 	else
 	{
-		BMPINFO temp=Foreground->INFO; temp.bmiHeader.biBitCount=8; 
 //		temp.bmiHeader.biHeight/=10; temp.bmiHeader.biWidth/=10;
-		Background->Destroy(); Background->Create(&temp); Background->CreateGrayPallete();		  
+		Background->Destroy(); 
+		Buffer->Create(Parent, Foreground->INFO.bmiHeader.biWidth, Foreground->INFO.bmiHeader.biHeight, 8); 
+		Background->CreateGrayPallete();		  
 	}
 	return 0;
 }

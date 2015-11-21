@@ -95,7 +95,9 @@ void OutputWnd::OnPaint()
 		else
 		{
 			MyRect ViewRgn=CurPic->GetViewRgn();
-			StretchBlt(hdc,ActiveWnd.left,ActiveWnd.top,ActiveWnd.Width(),ActiveWnd.Height(),buffer->GetDC(), 0, 0, ViewRgn.Width(),ViewRgn.Height(),SRCCOPY);	
+			StretchBlt(hdc,ActiveWnd.left,ActiveWnd.top,
+					   ActiveWnd.Width(),ActiveWnd.Height(),buffer->GetDC(), 0, 0, 
+					   ViewRgn.Width(),ViewRgn.Height(),SRCCOPY);	
 		}
 	}
 	else
@@ -112,7 +114,7 @@ BOOL OutputWnd::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwSt
 	BOOL ret=CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 	Wnd=MyRect(rect.left,rect.top,rect.right,rect.bottom); 
 
-	buffer=new BMPanvas(GetDC());
+	buffer=new BMPanvas();
 	CoordCanvas.CreateCompatibleDC(0);
 	CoordCanvas.SetMapMode(MM_ISOTROPIC);
 	CoordCanvas.SetWindowExt(Wnd.Width(),Wnd.Height());
@@ -506,7 +508,8 @@ void OutputWnd::Draw()
 		GraphicThread *thread=(GraphicThread *)AfxGetThread(); 
 		thread->WAIT_TIME=500;		
 		thread->StopThread(true); 
-		thread->Main(mode,0); 
+		//thread->Main(mode,0); 
+		thread->StartThread(mode, 0);
 		RedrawWindow(0,0,RDW_INVALIDATE | RDW_NOERASE | RDW_NOFRAME | RDW_ALLCHILDREN);			
 	}	
 }
